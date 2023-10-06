@@ -1,0 +1,19 @@
+syntax = "proto3";
+package swallowapi;
+option  go_package=".;swallowapi";
+message KV  {
+    bytes key =1;
+    bytes value=2;
+}
+message Request {
+  repeated KV data = 1;
+}
+
+message Response {
+  int32 code = 1;
+}
+
+service SwallowService {
+  rpc Trace(Request) returns (Response) {}
+  rpc Log(Request) returns (Response) {}
+}
